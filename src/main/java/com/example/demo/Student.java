@@ -3,7 +3,11 @@ package com.example.demo;
 import javax.persistence.*;
 
 @Entity(name="Student")
-@Table
+@Table(name = "students",
+        uniqueConstraints = {
+         @UniqueConstraint(name = "student_email_unique", columnNames = "email")
+        }
+)
 public class Student {
 
     @Id
@@ -25,7 +29,7 @@ public class Student {
     private String firstName;
     @Column(name = "lastName", updatable = true,  nullable = false, columnDefinition = "TEXT")
     private String lastName;
-    @Column(name = "email", updatable = true,  nullable = false, columnDefinition = "TEXT", unique = true)
+    @Column(name = "email", updatable = true,  nullable = false, columnDefinition = "TEXT")
     private String email;
     @Column(name = "age", updatable = true, nullable = false)
     private Integer age;
